@@ -1,18 +1,18 @@
-#include "holberton.h"
-
+#include "main.h"
+#include <unistd.h>
 /**
- * _puts - print a string
- * @str:pointer char
- * return:void
+ *_puts - prints a string, to stdout
+ *@str: value to be evaluate.
+ *Return: not.
  */
 void _puts(char *str)
 {
-int i;
+	int l = 0;
 
-for (i = 0; str[i] != '\0'; i++)
-{
-_putchar(str[i]);
-}
-_putchar('\n');
-return;
+	while (*(str + l) != '\0')
+	{
+		_putchar(str[l]);
+		l++;
+	}
+	_putchar('\n');
 }
