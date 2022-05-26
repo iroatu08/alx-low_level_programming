@@ -1,19 +1,21 @@
 #include "lists.h"
-
 /**
- * listint_len - length of a list
- * @h:pointer to list element
- * Return: size of list
+ * listint_len - find number of elements in a listint_t list
+ * @h: pointer to head
+ * Return: number of elements in a list
  */
 size_t listint_len(const listint_t *h)
 {
-	size_t len = 0;
+	const listint_t *aux_head;
+	size_t n_elements;
 
-	while (h)
+	aux_head = h;
+	n_elements = 0;
+
+	while (aux_head)
 	{
-		len++;
-		h = h->next;
+		n_elements++;
+		aux_head = (*aux_head).next;
 	}
-
-	return (len);
+	return (n_elements);
 }
