@@ -1,27 +1,47 @@
 #include "lists.h"
-
 /**
- * reverse_listint - reverses a list
- * @head: a pointer to the given list
- *
- * Return: a pointer to the newly reversed list
+ * delete_nodeint_at_index - delete node at given index
+ * @head: pointer to head
+ * @index: index given
+ * Return: 1 (Success) -1 (Failed)
  */
-listint_t *reverse_listint(listint_t **head)
+int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-listint_t *back, *next;
+	listint_t *aux1_head, *aux2_head;
+	unsigned int i;
 
-	if (*head == NULL || head == NULL)
-		return (NULL);
-	if ((*head)->next == NULL)
-		return (*head);
-back = NULL;
-	while (*head)
+	if (!index)
 	{
-		next = (*head)->next;
-		(*head)->next = back;
-		back = *head;
-		*head = next;
+		if (*head)
+		{
+			aux1_head = *head;
+			*head = (*head)->next;
+			free(aux1_head);
+			return (1);
+		}
 	}
-*head = back;
-return (*head);
+	else
+	{
+		aux1_head = *head;
+		aux2_head = *head;
+
+		for (i = 0; i < index - 1; i++)
+		{
+			if (i < index - 1 && !aux1_head)
+				return (-1);
+
+			aux1_head = aux1_head->next;
+			aux2_head = aux2_head->next;
+		}
+
+		aux2_head = aux2_head->next;
+
+		if (aux2_head)
+		{
+			aux1_head->next = aux2_head->next;
+			free(aux2_head);
+			return (1);
+		}
+	}
+	return (-1);
 }
