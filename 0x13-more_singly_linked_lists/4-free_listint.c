@@ -1,17 +1,18 @@
 #include "lists.h"
+#include <stdlib.h>
 /**
- * free_listint - free a listint_t list
- * @head: head pointer
- */
+* free_listint - is a function that frees the memory of a list
+* @head: is the pointer to the start of the list
+* Return: void
+*/
 void free_listint(listint_t *head)
 {
-	listint_t *current_node;
-
-	while (head)
-	{
-		current_node = head;
-		head = current_node->next;
-		free(current_node);
-	}
-
+listint_t *node;
+while (head)
+{
+node = head->next;
+free(head);
+head = node;
 }
+}
+
