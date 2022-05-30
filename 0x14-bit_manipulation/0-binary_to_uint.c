@@ -1,62 +1,35 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 /**
- * binary_to_uint - converts a binary number to an unsigned int
- * @b: pointer to string
- * Return: conv_number (converted number)
+ * binary_to_uint - is a function that converts binary to unsigned integer
+ * @b: string of 0 and 1 chars
+ * Return: the converted number, or 0 if other string or b is NULL.
  */
+
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int conv_number, exp;
+	unsigned int number = 0;
+	int x = 0;
 
-	conv_number = 0;
-	exp = 0;
-
-	if (b)
-		b = _end_string(b);
-
-	if (!b)
+	if (b == NULL)
+	{
 		return (0);
-
-	while (*b)
-	{
-		if (*b == '1')
-			conv_number += _pow(2, exp);
-
-		exp++;
-		--b;
 	}
 
-	return (conv_number);
-}
-
-/**
- * _pow - base raised to power of exp
- * @base: base
- * @exp: exponent
- * Return: result of base raised to exp
- */
-int _pow(int base, int exp)
-{
-	if (exp == 0)
-		return (1);
-
-	base = base * _pow(base, exp - 1);
-
-	return (base);
-}
-/**
- * _end_string - reach end of the string
- * @ptr: pointer to string
- * Return: pointer at the end
- */
-const char *_end_string(const char *ptr)
-{
-	for (; *ptr; ptr++)
+	while (b[x])
 	{
-		if (*ptr != '1' && *ptr != '0')
+		if (b[x] > '1' || b[x] < '0')
+		{
 			return (0);
+		}
+		else
+		{
+			number = (2 * number + (b[x] - '0'));
+			x++;
+		}
 	}
 
-	--ptr;
-	return (ptr);
+		return (number);
 }
