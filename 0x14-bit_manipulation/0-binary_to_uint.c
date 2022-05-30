@@ -60,4 +60,3 @@ const char *_end_string(const char *ptr)
 	--ptr;
 	return (ptr);
 }
-
